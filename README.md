@@ -37,6 +37,14 @@ var myScroll = new IScroll('#wrapper', {
 });
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);//阻止默认事件
 ```
+### 使用有错检查
+
+####三个地方去检查一下
+
+1. 确保#wrapper下只有一个#scroller元素，也就是说#scroller元素不能有兄弟元素。
+1. 确保#scroller的高度设置正确。也就是说你想让内容在多大的一个框里面滑动要设置正确。这也是比较容易出错的地方。根据你的描述，我觉得你的	    这个高度可能和最里面内容的高度一样了。打开浏览器调试窗口去确认一下高度无误。
+1. 在初始化iScroll之后，如果又在其里面的内容层加载了新的内容，一定要将你的iScroll实例刷新。尤其是在利用Angular写移动端的页面的时候，Aj    ax请求完数据之后，在回调函数里面写一句刷新你的iScroll实例的代码。
+
 #### 理解内核
 * `options.useTransform`,默认情况下，引擎使用CSS属性`transform`变换,但是性能损耗太大
 * `options.useTransition`iscroll使用CSS`requestAnimationFrame`,在现代浏览器上的差异几乎不明显。在较旧的设备转换执行更好。
